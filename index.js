@@ -44,26 +44,3 @@ app.listen(port, function() {
   console.log('Web app started on port : ' + port);
 
 });
-
-
-// var greet = [];
-//
-// app.get('/greetings/:name', function(req, res) {
-//   var name = req.params.name
-//   res.send("Hello, " + name);
-//   greet.push(name)
-// });
-//
-// app.get('/greeted', function(req, res) {
-//   res.send(greet);
-// });
-// app.get('/counter/:name', function(req, res) {
-//   var name = req.params.name;
-//
-//   function CounterNum(input) {
-//     return input === name;
-//
-//   }
-//   var CounterNum = greet.filter(CounterNum).length;
-//   res.send("Hello, " + name + ' has been greeted ' + CounterNum + ' times(s)')
-// });
