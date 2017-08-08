@@ -4,32 +4,44 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 
-const GreetRoutes = require('./greetings');
+const GreetRoutes = require("./greetings");
 const greetRoutes = GreetRoutes();
 const app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'))
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
 app.use(bodyParser.json())
 
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30}}));
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {
+    maxAge: 60000 * 30
+  }
+}));
 app.use(flash());
 
 app.get('/', function(req, res) {
-  res.redirect('/addName');
+  res.redirect("/addName");
 });
 
-app.get('/addName', greetRoutes.addName);
-app.post('/addName', greetRoutes.addName);
+app.get("/addName" , greetRoutes.addName);
+app.post("/addName" , greetRoutes.addName);
 
-const port = 3000
+app.get("/index" , greetRoutes.index);
+app.post("/index" , greetRoutes.index);
 
-app.listen(port, function(){
-  console.log('Web app started on port : '+ port);
+const port = 3007
+
+app.listen(port, function() {
+  console.log('Web app started on port : ' + port);
 
 });
 
