@@ -22,6 +22,7 @@ app.use(bodyParser.json())
 
 app.use(session({
   secret: 'keyboard cat',
+  resave: false,
   cookie: {
     maxAge: 60000 * 30
   }
