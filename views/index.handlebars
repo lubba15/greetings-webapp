@@ -1,8 +1,13 @@
 <h1>Names Greeted</h1>
+<link rel="stylesheet" href="/css/style.css">
 
+<div class="style">
 <ul>
+
   {{#each name}}
     <li>{{this}}</li>
   {{/each}}
 </ul>
 {{message.error}}
+<a href="/addName">First Page</a>
+</div>

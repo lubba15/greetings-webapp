@@ -30,19 +30,20 @@ module.exports = function() {
     })
 
     if (name && !names) {
-      nameList.push(name);
-    } else {
-      req.flash('error', 'name is already greeted!')
-    }
-    console.log(language);
-    console.log(message);
-    res.render('addName', {
-      language: message
-    })
+      nameList.push(name.substr(0, 1).toUpperCase() + name.substr(1, name.length - 1).toLowerCase());
+      // nameList.push(name.string[0].toUpperCase() + name.substring(1)).toLowerCase());
+  } else {
+    req.flash('error', 'name is already greeted!')
   }
-  return {
-    // add,
-    addName,
-    index
-  }
+
+  console.log(language);
+  console.log(message);
+  res.render('addName', {
+    language: message
+  })
+}
+return {
+  addName,
+  index
+}
 };
