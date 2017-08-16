@@ -1,49 +1,58 @@
-module.exports = function() {
+module.exports = function(models) {
 
   const nameList = [];
-  // body..
-  const index = function(req, res) {
-    res.render('index', {
-      name: nameList
+
+  const index = function(req, res, next) {
+
+    models.Name.find({}, function(err, name) {
+      if (err) {
+        return next(err);
+      }
+
+      res.render('index', {
+        name
+      });
     });
-  };
-
-  const add = function(req, res) {
-    res.render('addName');
-  };
-
-  const addName = function(req, res) {
-    var name = req.body.name;
-    var language = req.body.language;
+  }
+  const addName = function(req, res, next) {
     var message = "";
+    var language = req.body.language
 
-    if (language === 'English') {
-      message = "Hello, " + name;
-    } else if (language === 'French') {
-      message = "Bounjuor, " + name;
-    } else if (language === 'IsiZulu') {
-      message = "Sawubona, " + name;
+    var name = {
+      name: req.body.name
     }
 
-    var names = nameList.find(function(nameAdded) {
-      return nameAdded === name;
+    if (language === 'English') {
+      message = "Hello, " + name.name;
+    } else if (language === 'French') {
+      message = "Bounjuor, " + name.name;
+    } else if (language === 'IsiZulu') {
+      message = "Sawubona, " + name.name;
+    }
+
+    if (name.name && !name) {
+
+      req.flash('error', 'name is already greeted!');
+
+    }
+
+    console.log(name !== "");
+    if (name.name !== "") {
+      models.Name.create({
+        name: req.body.name
+      }, function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        req.flash('success', 'Name added');
+      })
+    }
+    res.render('addName', {
+      language: message
     })
-
-    if (name && !names) {
-      nameList.push(name.substr(0, 1).toUpperCase() + name.substr(1, name.length - 1).toLowerCase());
-      // nameList.push(name.string[0].toUpperCase() + name.substring(1)).toLowerCase());
-  } else {
-    req.flash('error', 'name is already greeted!')
   }
-
-  console.log(language);
-  console.log(message);
-  res.render('addName', {
-    language: message
-  })
+  return {
+    addName,
+    index
+  }
 }
-return {
-  addName,
-  index
-}
-};

@@ -2,10 +2,18 @@ body {
   background-color: skyblue;
   font-size: 30px;
 }
-h1{
+
+
+h1 {
   padding-left: 15%;
-    font-size: 70px;
+  font-size: 70px;
 }
-.style{
+
+li{
+  list-style: none;
+}
+
+
+.style {
   padding-left: 25%
 }

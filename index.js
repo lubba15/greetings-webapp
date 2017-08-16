@@ -5,7 +5,12 @@ const flash = require('express-flash');
 const session = require('express-session');
 
 const GreetRoutes = require("./greetings");
-const greetRoutes = GreetRoutes();
+const Models = require('./models');
+
+const models = Models(process.env.MONGO_DB_URL || "mongodb://localhost/addName")
+const greetRoutes = GreetRoutes(models);
+
+
 const app = express();
 
 app.engine('handlebars', exphbs({
@@ -32,13 +37,13 @@ app.get('/', function(req, res) {
   res.redirect("/addName");
 });
 
-app.get("/addName" , greetRoutes.addName);
-app.post("/addName" , greetRoutes.addName);
+app.get("/addName", greetRoutes.addName);
+app.post("/addName", greetRoutes.addName);
 
-app.get("/index" , greetRoutes.index);
-app.post("/index" , greetRoutes.index);
+app.get("/index", greetRoutes.index);
+app.post("/index", greetRoutes.index);
 
-const port = process.env.PORT || 3007;
+const port = process.env.PORT || 3008;
 
 app.listen(port, function() {
   console.log('Web app started on port : ' + port);

@@ -2,12 +2,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="style">
-<ul>
-
-  {{#each name}}
-    <li>{{this}}</li>
-  {{/each}}
-</ul>
-{{message.error}}
-<a href="/addName">First Page</a>
+  <ul>
+    {{#each name}}
+      <li>{{this.name}}</li>
+    {{/each}}
+    {{message.error}}
+  </ul>
+  <a href="/addName">First Page</a>
 </div>
