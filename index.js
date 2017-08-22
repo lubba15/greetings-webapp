@@ -40,10 +40,14 @@ app.get('/', function(req, res) {
 app.get("/addName", greetRoutes.addName);
 app.post("/addName", greetRoutes.addName);
 
-app.get("/index", greetRoutes.index);
-app.post("/index", greetRoutes.index);
+// app.get("/addName", greetRoutes.showIndex);
+app.get("/greeted", greetRoutes.greeted);
+app.post("/greeted", greetRoutes.greeted);
 
-const port = process.env.PORT || 3008;
+app.get("/counter/:name", greetRoutes.counter);
+// app.post("/counter/:name", greetRoutes.counter);
+
+const port = process.env.PORT || 3060;
 
 app.listen(port, function() {
   console.log('Web app started on port : ' + port);
