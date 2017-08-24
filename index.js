@@ -45,6 +45,9 @@ app.get("/greeted", greetRoutes.greeted);
 app.post("/greeted", greetRoutes.greeted);
 
 app.get("/counter/:name", greetRoutes.counter);
+
+ app.get("/clear", greetRoutes.clear);
+ app.post("/clear", greetRoutes.clear);
 // app.post("/counter/:name", greetRoutes.counter);
 
 const port = process.env.PORT || 3060;
