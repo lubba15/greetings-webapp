@@ -50,7 +50,7 @@ app.get("/counter/:name", greetRoutes.counter);
  app.post("/clear", greetRoutes.clear);
 // app.post("/counter/:name", greetRoutes.counter);
 
-const port = process.env.PORT || 3060;
+const port = process.env.PORT || 3070;
 
 app.listen(port, function() {
   console.log('Web app started on port : ' + port);

@@ -1,3 +1,4 @@
+
 module.exports = function(models) {
 
   const greeted = function(req, res, next) {
@@ -19,6 +20,8 @@ module.exports = function(models) {
     var data = {
       name: req.body.name
     }
+    console.log(data);
+    console.log(language);
 
     if (data.name !== undefined) {
       models.Name.findOne({
@@ -92,12 +95,12 @@ module.exports = function(models) {
                 } else if (language === 'IsiZulu') {
                   message = "Sawubona, " + result.name;
                 }
-                var otpt = allNames.length + " have been greeted for this session";
+                var output = allNames.length + " have been greeted for this session";
 
 
                 var NamesGreeted = {
                   greetings: message,
-                  msg: otpt
+                  msg: output
                 }
 
                 res.render('addName', NamesGreeted);
@@ -140,7 +143,7 @@ module.exports = function(models) {
       if (err) {
         done(err)
       }
-   res.render('greeted');
+   res.render('addName');
     })
 
   }
